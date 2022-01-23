@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">UrlSharpner🔗</div>
+    </nav>
+    <div class="title-div">
+        <h1 class="title">One Stop for <span class="url-span">URL</span> Shortening.</h1>
+    </div>
+    <div class="info">
+        <!-- <img src="compressimg.png" alt="picture"> -->
+        <div class="imgsrc-compress"></div>
+        <p class="about">Helps you transforming long, ugly links into <b>short</b>.</p>
+    </div>
+
+    <div class="info1">
+        <div class="imgsrc-share"></div>
+        <p class="about1">You can <b>share</b> them anywhere you want to.</p>
+    </div>
+
+    <div class="info2">
+        <div class="imgsrc-url"></div>
+        <p class="about2">Just enter long link into log and just press <b>shrink</b>.</p>
+    </div>
+
+    <div class="video-div">
+        <iframe class="video-div1" width="292" height="150" src="https://www.youtube.com/embed/J0ANDfH_k5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="error-display">
+        <div class="err-msg">
+            <% if (locals.error_msg) { %>
+                <p>
+                    <%= error_msg %>
+                </p>
+                <% } %>
+        </div>
+    </div>
+    <form action="/" method="post">
+        <!-- <label for="fullUrl">URL</label> -->
+        <div class="input-url">
+            <input type="url" name="fullUrl" id="fullUrl" placeholder="Enter URL here..">
+            <button type="submit" class="shrink-btn" onclick="checkErr()">Shrink</button>
+        </div>
+    </form>
+
+    <div class="short-url">
+        <div class="caution" id="caution">Link will displayed here👇</div>
+        <% if (locals.short_url) { %>
+            <a href="<%= short_url %>" id="surl" target="_blank">
+                <%= short_url %>
+            </a>
+            <button onclick="textCopier('surl')" class="copy-btn">copy</button>
+            <% } %>
+    </div>
+
+    <footer>
+        Made with ♥ by <span class="link-profile"><a href="https://twitter.com/Sreekartammana"
+                target="_blank">Sreekar</a></span>
+    </footer>
+
+    <script>
+        function textCopier(id) {
+            var str = document.getElementById(id);
+            window.getSelection().selectAllChildren(str);
+            document.execCommand("Copy")
+        }
+
+        const shrink_btn = document.getElementById('shrink-btn');
+
+        shrink_btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = document.getElementById('fullUrl');
+            if (!url) {
+                document.querySelector('.err-msg').style.display = "flex";
+                document.querySelector('.err-msg').style.width = "300px";
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
