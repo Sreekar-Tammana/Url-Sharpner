@@ -230,6 +230,7 @@ footer{
     display: flex;
     font-family: 'Poppins';
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .link-profile{
